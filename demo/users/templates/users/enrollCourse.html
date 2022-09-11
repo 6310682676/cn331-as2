@@ -1,0 +1,21 @@
+{% extends 'users/layout.html' %}
+{% block body %}
+
+<h1>Subject list:</h1>
+<p>{{ request.user.first_name }}  </p>
+
+{% for subject in subjects %}
+<div>
+{{ subject }}
+<form action="{% url 'enrollComfirm' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" value="{{ subject.id }}" name="subject">
+    <input type="submit" value="enroll">
+</form><br>
+</div>
+{% empty %}
+No subjects.
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'subjects/layout.html' %}
+{% block body %}
+<h1>Subject: {{subject.id}}</h1>
+<ul>
+    <li>Code: {{subject.subjectCode}}</li>
+</ul>
+
+<a href="{% url 'index' %}">Back to Subjects List</a>
+
+{% endblock %}

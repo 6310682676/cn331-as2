@@ -1,0 +1,14 @@
+{% extends 'users/layout.html' %}
+{% block body %}
+<h1>MY COURSE</h1>
+{% for subject in booking %}
+{{ subject.subject }}<br>
+<form action="{% url 'cancelCourse' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" value="{{ subject.subject.id }}" name="subject">
+    <input type="submit" value="cancelCourse">
+</form><br>
+{% empty %}
+No subjects.
+{% endfor %}
+{% endblock %}
