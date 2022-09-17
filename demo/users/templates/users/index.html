@@ -1,11 +1,119 @@
-{% extends 'users/layout.html' %}
-{% block body %}
-<h1>Welcome, {{ request.user.first_name }}</h1>
-<ul>
-    <li>Username: {{ request.user.username }}</li>
-</ul>
-<a href="{% url 'enroll' %}">Enroll</a><br>
-<a href="{% url 'logout' %}">Log out</a><br>
-<a href="{% url 'myCourse' %}">My Course</a><br>
-<a href="{% url 'subjectsList' %}">Subject List</a>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ce5bfa2d40.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+<style>
+    body {
+        /* background-image: url('https://media.discordapp.net/attachments/989739686203367464/1018790797119848458/Missup_thammasat_university_in_future_6bffe0a8-7ee7-4e1a-9201-c753a37feeb7.png?width=676&height=676');
+        background-repeat: repeat-y;
+        background-size: cover;
+        background-position: center; */
+        background-color: wheat;
+
+    }
+
+    .linkbox {
+        background-color: aliceblue;
+        height: 250px;
+        width: 250px;
+        border-radius: 15px;
+        opacity: 0.9;
+        text-align: center;
+        padding-top: 2em;
+    }
+
+    h1 {
+        font-family: "Brush Script MT", cursive;
+        font-size: 90px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 700;
+        line-height: 26.4px;
+        text-align: center;
+        -webkit-text-stroke-width: 1px;
+        /* -webkit-text-stroke-color: black; */
+
+    }
+
+    h2 {
+        color: rgb(59, 59, 59);
+        font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+        font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+        font-size: 60px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 700;
+        line-height: 26.4px;
+        text-align: center;
+        -webkit-text-stroke-width: 1px;
+        /* -webkit-text-stroke-color: black; */
+
+    }
+
+    h3 {
+        color: salmon;
+
+    }
+
+    i {
+        color: salmon;
+    }
+</style>
+<div class="container">
+    <br><br>
+    <h1> EnrollTU </h1>
+    <br>
+    <h2> Thammast School Of Engineering </h2>
+    <br><br><br><br>
+    <p> ☺︎ Welcome, {{ request.user.first_name }} {{ request.user.username }} </p>
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'enroll' %}" style="text-decoration:none">
+                <div class="linkbox">
+                    <h3>ENROLLMENT</h3><br>
+                    <i class="fa-solid fa-pen-to-square fa-6x"></i>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="{% url 'subjectsList' %}" style="text-decoration:none">
+                <div class="linkbox">
+                    <h3>COURSE LIST</h3><br>
+                    <i class="fa-solid fa-list fa-6x"></i>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="{% url 'myCourse' %}" style="text-decoration:none">
+                <div class="linkbox">
+                    <h3>MY COURSE</h3><br>
+                    <i class="fa-solid fa-book fa-6x"></i>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a href="{% url 'logout' %}" style="text-decoration:none">
+                <div class="linkbox">
+                    <h3>LOGOUT</h3><br>
+                    <i class="fa-solid fa-arrow-right-from-bracket fa-6x"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+</html>

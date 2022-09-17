@@ -1,13 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <title>Document</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ce5bfa2d40.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+
 </head>
+
+<style>
+    body {
+        background-image: url('https://cdn.discordapp.com/attachments/770324554459250690/1020604039379046520/Missup_thammasat_university_in_future_6bffe0a8-7ee7-4e1a-9201-c753a37feeb7_auto_x2.jpg');
+        background-repeat: repeat-y;
+        background-size: cover;
+        background-position: center;
+        background-color: wheat;
+
+    }
+
+    .linkbox {
+        background-color: aliceblue;
+        height: 250px;
+        width: 250px;
+        border-radius: 15px;
+        opacity: 0.9;
+        text-align: center;
+        padding-top: 2em;
+    }
+
+    /* Style the navigation bar */
+    .navbar {
+        width: 100%;
+        background-color: #555;
+        overflow: hidden;
+    }
+
+    /* Navbar links */
+    .navbar a {
+        float: left;
+        text-align: center;
+        padding: 12px;
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    /* Navbar links on mouse-over */
+    .navbar a:hover {
+        background-color: rgb(255, 195, 110);
+    }
+
+    /* Current/active navbar link */
+    .active {
+        background-color: #ff8707;
+    }
+
+    /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+    @media screen and (max-width: 500px) {
+        .navbar a {
+            float: none;
+            display: block;
+        }
+    }
+</style>
+
 <body>
-    {% block body %}
-    {% endblock %}
+    <div class="navbar">
+        <a href="{% url 'index' %}"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a href="{% url 'enroll' %}">enrollment </a>
+        <a href="{% url 'myCourse' %}"> my course </a>
+        <a href="{% url 'subjectsList' %}"> all courses </a>
+        <a href="{% url 'logout' %}"><i class="fa-sharp fa-solid fa-door-open"></i> sign out </a>
+    </div>
+    <div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
 </body>
+
 </html>

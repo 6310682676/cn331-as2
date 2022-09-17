@@ -12,5 +12,6 @@ urlpatterns = [
     path('myCourse', views.courseView, name='myCourse'),
     path('enrollComfirm', views.enrollComfirm, name='enrollComfirm'),
     path('enrollCancel', views.cancelCourse, name='cancelCourse'),
-    path('subjectlist', subjects.views.index, name='subjectsList')
+    path('subjectlist', subjects.views.index, name='subjectsList'),
+    path('courseEdition', views.courseEdition, name='courseEdition')
 ]

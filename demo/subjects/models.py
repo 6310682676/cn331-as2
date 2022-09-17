@@ -9,5 +9,6 @@ class Subject(models.Model):
     year = models.IntegerField()
     quota = models.IntegerField()
     status = models.BooleanField(default=True)
+    detail = models.CharField(max_length=99999, default="")
     def __str__(self):
         return f'{self.subjectCode} {self.subjectName} semester:{self.semester} year:{self.year} quota:{self.quota}'

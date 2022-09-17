@@ -1,10 +1,47 @@
 {% extends 'subjects/layout.html' %}
 {% block body %}
-<h1>Subject: {{subject.id}}</h1>
-<ul>
-    <li>Code: {{subject.subjectCode}}</li>
-</ul>
+<style>
+    h1 {
+        color: rgba(59, 59, 59, 0.792);
+        font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+        font-size: 80px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 700;
+        line-height: 26.4px;
+        text-align: center;
+        /* -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black; */
 
-<a href="{% url 'index' %}">Back to Subjects List</a>
+    }
+
+    p {
+        color: rgba(93, 93, 93, 0.927);
+        font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
+        font-size: 24px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 450;
+        line-height: 26.4px;
+        text-align: center;
+    }
+</style>
+
+<br>
+<br>
+<h1>Course: {{ subject.subjectCode }}</h1>
+<br>
+<p>{{ request.user.first_name }} {{ request.user.last_name }} {{ request.user.username }} Thammasat School Of
+    Engineering </p>
+<div class="row" style="height: 250px">
+    <div class="col-4" style="background-color:antiquewhite;">
+        <p>CODE: {{ subject.subjectCode }}</p>
+    </div>
+    <div class="col-8" style="background-color:white; ">
+        <p>{{ subject.detail}}</p>
+    </div>
+
+</div>
+
 
 {% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'users/layout.html' %}
+{% block body %}
+
+<style>
+    h1 {
+        color: yellow;
+        font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+        font-size: 80px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 700;
+        line-height: 26.4px;
+        text-align: center;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+
+    }
+
+    p {
+        color: red;
+        font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+        font-size: 300%;
+        text-align: center;
+
+    }
+</style>
+<br>
+<br>
+<h1>Enrollment Administration</h1>
+<br>
+<br>
+
+<table class="table table-warning table-striped">
+    <tr>
+        <th colspan="8">
+            <center>Registration Course List</center>
+        </th>
+    </tr>
+    <tr>
+        <th>code</th>
+        <th>course</th>
+        <th>semester</th>
+        <th>year</th>
+        <th>quota</th>
+        <th>member</th>
+        <th>status</th>
+        <th>edit</th>
+    </tr>
+    {% for subject in subjects %}
+
+    <tr>
+        <!-- <td> </td>  -->
+        <td><a href="{% url 'subjects' subject.id %}">{{ subject.subjectCode }}</a></td>
+        <td>{{ subject.subjectName }}</td>
+        <td>{{ subject.semester }}</td>
+        <td>{{ subject.year }}</td>
+        <td>{{ subject.quota }}</td>
+        <td><a>member</a></td>
+        {%if subject.status and subject.quota != 0 %}
+        <td>enrollable</td>
+        {% else %}
+        <td>closed</td>
+        {% endif %}
+        <td><a href="/admin/subjects/subject/{{ subject.id}}/change/">
+                <div><i class="fa-sharp fa-solid fa-pen-to-square" style="color: rgb(255, 149, 0)"></i></div>
+            </a></td>
+    </tr>
+
+    {% endfor %}
+</table>
+<div style="text-align:right">
+    <a href="/admin/subjects/subject/add/" class="btn btn-light"><i class="fa-solid fa-plus"></i>ADD</a>
+</div>
+
+
+
+{% endblock %}

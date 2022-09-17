@@ -1,21 +1,81 @@
 {% extends 'users/layout.html' %}
 {% block body %}
 
-<h1>Subject list:</h1>
-<p>{{ request.user.first_name }}  </p>
+<style>
+    h1 {
+        color: rgba(59, 59, 59, 0.792);
+        font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+        font-size: 80px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 700;
+        line-height: 26.4px;
+        text-align: center;
+        /* -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black; */
 
-{% for subject in subjects %}
-<div>
-{{ subject }}
-<form action="{% url 'enrollComfirm' %}" method="post">
-    {% csrf_token %}
-    <input type="hidden" value="{{ subject.id }}" name="subject">
-    <input type="submit" value="enroll">
-</form><br>
+    }
+
+    p {
+        color: rgba(93, 93, 93, 0.927);
+        font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
+        font-size: 24px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 450;
+        line-height: 26.4px;
+        text-align: center;
+    }
+</style>
+
+
+
+<br>
+<br>
+<h1>ENROLLMENT</h1>
+<br>
+<p>{{ request.user.first_name }} {{ request.user.last_name }} {{ request.user.username }} Thammasat School Of
+    Engineering </p>
+
+
+
+<div class="container">
+    <table class="table table-light table-striped">
+        <tr>
+
+            <th>code</th>
+            <th>course</th>
+            <th>semester</th>
+            <th>year</th>
+            <th>quota</th>
+            <th>status</th>
+
+        </tr>
+        {% for subject in subjects %}
+        <tr>
+            <!-- <td> </td>  -->
+            <td><a href="{% url 'subjects' subject.id %}">{{ subject.subjectCode }}</a></td>
+            <td>{{ subject.subjectName }}</td>
+            <td>{{ subject.semester }}</td>
+            <td>{{ subject.year }}</td>
+            <td>{{ subject.quota }}</td>
+            {%if subject.status and subject.quota %}
+            <td>
+                <form action="{% url 'enrollComfirm' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ subject.id }}" name="subject">
+                    <button type="submit" class="btn btn-success">enroll</button>
+                </form>
+            </td>
+            {% else %}
+            <td><button type="button" disable class="btn btn-danger">closed</button></td>
+            {% endif %}
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
 </div>
-{% empty %}
-No subjects.
-{% endfor %}
-
 
 {% endblock %}

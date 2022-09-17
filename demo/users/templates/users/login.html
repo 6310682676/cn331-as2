@@ -1,13 +1,75 @@
-{% extends 'users/layout.html' %}
-{% block body %}
-<h1>Login</h1>
-{% if message %}
-    <div style="color:red">{{message}}</div>
-{% endif %}
-<form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="Enter your username">
-    <input type="password" name="password" placeholder="Enter your password">
-    <input type="submit" value="Login">
-</form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ce5bfa2d40.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+
+
+<style>
+    h1 {
+        color: yellow;
+        font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+        font-size: 75px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 700;
+        line-height: 26.4px;
+        text-align: center;
+
+
+    }
+</style>
+
+<body>
+    <div style="background-image: url('https://scontent.fbkk29-3.fna.fbcdn.net/v/t1.15752-9/298601314_1822171671493901_4170797695593553162_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=ae9488&_nc_ohc=fAwlTf93MaUAX8QTA58&_nc_ht=scontent.fbkk29-3.fna&oh=03_AVKsMMx4H943I2YWfOAb5wSKAzLMdXrNtGApsX003ofRtA&oe=6349772F');
+height: 100%; 
+width: 100%;
+position: absolute;
+background-position: center;
+background-repeat: repeat-y;
+background-size: cover;">
+        <br><br><br><br>
+        <h1>Login</h1>
+        <br><br><br><br>
+        {% if message %}
+        <center>
+            <div style="color:rgb(59, 59, 59)">{{message}}</div>
+        </center>>
+        {% endif %}
+
+        <center>
+            <div style="width: fit-content;">
+                <div class='border border-dark'
+                    style="background-color:white ; width: fit-content; padding: 2rem; border-radius: 5px; opacity: 0.7; border: 5px;">
+                    <form action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
+                        <span>Username :</span><br>
+                        <input class='form-control-lg' type="text" name="username"
+                            placeholder="Enter your username"><br>
+                        <span>Password : </span><br>
+                        <input class='form-control-lg' type="password" name="password" id="password"
+                            placeholder="Enter your password"><br><br>
+                </div><br>
+                <button type="submit" style="width: 100% ;border-radius: 5px;">SIGN IN</button>
+                </form>
+            </div>
+
+        </center>
+
+    </div>
+</body>
+
+</html>

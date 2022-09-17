@@ -11,25 +11,34 @@ from subjects.views import subject
 
 # Create your views here.
 
+
 def index(request):
+    subjects = Subject.objects.all()
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
-    return render(request, 'users/index.html')
-    
+    if request.user.is_superuser:
+        return render(request, 'users/admin.html', {
+            'subjects': subjects
+        })
+    else:
+        return render(request, 'users/index.html')
+
+
 def loginView(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
-        if user is not None :
+        if user is not None:
             login(request, user)
             return HttpResponseRedirect(reverse('index'))
         else:
             return render(request, 'users/login.html', {
-                'message' : 'Invalid credentials.'
+                'message': 'Invalid credentials.'
             })
 
     return render(request, 'users/login.html')
+
 
 def logoutView(request):
     logout(request)
@@ -37,42 +46,52 @@ def logoutView(request):
         'message': 'You are logged out.'
     })
 
-def enrollCourse(request): #user_username):
-    booking = Booking.objects.filter(username_id=request.user.id).values_list('subject_id', flat=True)
+
+def enrollCourse(request):  # user_username):
+    booking = Booking.objects.filter(
+        username_id=request.user.id).values_list('subject_id', flat=True)
     print(booking.query)
     subjects = Subject.objects.exclude(pk__in=booking).all()
     return render(request, 'users/enrollCourse.html', {
         'subjects': subjects,
-        
+
     })
+
 
 def enrollComfirm(request):
     if request.method == "POST":
         subjectID = request.POST['subject']
         subject1 = Subject.objects.filter(pk=subjectID).first()
-        b = Booking(subject = subject1, username=request.user)
+        b = Booking(subject=subject1, username=request.user)
         b.save()
         subject1.quota -= 1
         subject1.save()
         return HttpResponseRedirect(reverse('enroll'))
-    
-
 
 
 def courseView(request):
     booking = Booking.objects.filter(username_id=request.user.id).all()
-    return render(request, 'users/myCourse.html',{
+    return render(request, 'users/myCourse.html', {
         'booking': booking,
     })
     pass
 
+
 def cancelCourse(request):
     if request.method == "POST":
         subjectID = request.POST['subject']
-        booking = Booking.objects.filter(username_id=request.user.id, subject_id=subjectID).get()
+        booking = Booking.objects.filter(
+            username_id=request.user.id, subject_id=subjectID).get()
         print(booking)
         booking.delete()
         subject1 = Subject.objects.filter(pk=subjectID).first()
         subject1.quota += 1
         subject1.save()
         return HttpResponseRedirect(reverse('myCourse'))
+
+
+def courseEdition(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    if request.user.is_superuser:
+        return render(request, 'users/courseEdition.html')

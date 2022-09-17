@@ -1,13 +1,71 @@
 {% extends 'subjects/layout.html' %}
 {% block body %}
 
-<h1>Subject list:</h1>
-<ul>
-    {% for subject in subjects %}
-    <li>{{ subject }}</li>
-    {% empty %}
-    <li>No subjects.</li>
-    {% endfor %}
-</ul>
+<style>
+    h1 {
+        color: rgba(59, 59, 59, 0.792);
+        font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+        font-size: 80px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 700;
+        line-height: 26.4px;
+        text-align: center;
+        /* -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black; */
+
+    }
+
+    p {
+        color: rgba(93, 93, 93, 0.927);
+        font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
+        font-size: 24px;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: 450;
+        line-height: 26.4px;
+        text-align: center;
+    }
+</style>
+
+<br>
+<br>
+<h1>COURSE LIST</h1>
+<br>
+<p> Thammasat School Of Engineering </p>
+
+
+<div class="container">
+    <table class="table table-light table-striped">
+        <tr>
+
+            <th>code</th>
+            <th>course</th>
+            <th>semester</th>
+            <th>year</th>
+            <th>quota</th>
+            <th>status</th>
+
+        </tr>
+        {% for subject in subjects %}
+        <tr>
+            <!-- <td> </td>  -->
+            <td><a href="{% url 'subjects' subject.id %}">{{ subject.subjectCode }}</a></td>
+            <td>{{ subject.subjectName }}</td>
+            <td>{{ subject.semester }}</td>
+            <td>{{ subject.year }}</td>
+            <td>{{ subject.quota }}</td>
+            {%if subject.status and subject.quota %}
+            <td>enrollable</td>
+            {% else %}
+            <td>closed</td>
+            {% endif %}
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+</div>
 
 {% endblock %}
