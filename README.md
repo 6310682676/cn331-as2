@@ -3,6 +3,9 @@
 1. Parames Raikhao 6310680258
 1. Suteekran Kangkreethaphol 6310682676
 
+### Link video
+[Video](https://www.youtube.com/watch?v=ue5bWUcuBi8)
+
 ### Install Requirement
 ```
 pip install -r requirement.txt
