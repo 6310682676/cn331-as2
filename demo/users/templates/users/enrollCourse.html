@@ -61,7 +61,7 @@
             <td>{{ subject.quota }}</td>
             {%if subject.status and subject.quota %}
             <td>
-                <form action="{% url 'enrollComfirm' %}" method="post">
+                <form action="{% url 'users:enrollComfirm' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" value="{{ subject.id }}" name="subject">
                     <button type="submit" class="btn btn-success">enroll</button>

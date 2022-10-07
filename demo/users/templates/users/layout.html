@@ -77,11 +77,11 @@
 
 
     <div class="navbar">
-        <a href="{% url 'index' %}"><i class="fa fa-fw fa-home"></i> Home</a>
-        <a href="{% url 'enroll' %}">enrollment </a>
-        <a href="{% url 'myCourse' %}"> my courses </a>
-        <a href="{% url 'subjectsList' %}">all courses </a>
-        <a href="{% url 'logout' %}"><i class="fa-sharp fa-solid fa-door-open"></i> sign out </a>
+        <a href="{% url 'users:index' %}"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a href="{% url 'users:enroll' %}">enrollment </a>
+        <a href="{% url 'users:myCourse' %}"> my courses </a>
+        <a href="{% url 'users:subjectsList' %}">all courses </a>
+        <a href="{% url 'users:logout' %}"><i class="fa-sharp fa-solid fa-door-open"></i> sign out </a>
     </div>
     <div class="container">
         {% block body %}

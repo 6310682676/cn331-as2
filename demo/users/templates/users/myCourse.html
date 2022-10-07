@@ -54,7 +54,7 @@
             <td>{{ subject.subject.year }}</td>
             <td>{{ subject.subject.quota }}</td>
             <td>
-                <form action="{% url 'cancelCourse' %}" method="post">
+                <form action="{% url 'users:cancelCourse' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" value="{{ subject.subject.id }}" name="subject">
                     <button type="submit" class="btn btn-danger">cancel</button>

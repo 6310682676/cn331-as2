@@ -82,7 +82,7 @@
     <p> ☺︎ Welcome, {{ request.user.first_name }} {{ request.user.username }} </p>
     <div class="row">
         <div class="col">
-            <a href="{% url 'enroll' %}" style="text-decoration:none">
+            <a href="{% url 'users:enroll' %}" style="text-decoration:none">
                 <div class="linkbox">
                     <h3>ENROLLMENT</h3><br>
                     <i class="fa-solid fa-pen-to-square fa-6x"></i>
@@ -90,7 +90,7 @@
             </a>
         </div>
         <div class="col">
-            <a href="{% url 'subjectsList' %}" style="text-decoration:none">
+            <a href="{% url 'users:subjectsList' %}" style="text-decoration:none">
                 <div class="linkbox">
                     <h3>COURSE LIST</h3><br>
                     <i class="fa-solid fa-list fa-6x"></i>
@@ -98,7 +98,7 @@
             </a>
         </div>
         <div class="col">
-            <a href="{% url 'myCourse' %}" style="text-decoration:none">
+            <a href="{% url 'users:myCourse' %}" style="text-decoration:none">
                 <div class="linkbox">
                     <h3>MY COURSE</h3><br>
                     <i class="fa-solid fa-book fa-6x"></i>
@@ -106,7 +106,7 @@
             </a>
         </div>
         <div class="col">
-            <a href="{% url 'logout' %}" style="text-decoration:none">
+            <a href="{% url 'users:logout' %}" style="text-decoration:none">
                 <div class="linkbox">
                     <h3>LOGOUT</h3><br>
                     <i class="fa-solid fa-arrow-right-from-bracket fa-6x"></i>
