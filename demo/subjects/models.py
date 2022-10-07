@@ -12,3 +12,6 @@ class Subject(models.Model):
     detail = models.CharField(max_length=99999, default="")
     def __str__(self):
         return f'{self.subjectCode} {self.subjectName} semester:{self.semester} year:{self.year} quota:{self.quota}'
+
+    def is_quota_available(self):
+        return self.quota > 0

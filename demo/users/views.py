@@ -15,7 +15,7 @@ from subjects.views import subject
 def index(request):
     subjects = Subject.objects.all()
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('users:login'), status=200)
+        return loginView(request)
     if request.user.is_superuser:
         return render(request, 'users/admin.html', {
             'subjects': subjects
@@ -28,14 +28,15 @@ def loginView(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
+        
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse('users:index'))
+            return index(request)
         else:
             return render(request, 'users/login.html', {
                 'message': 'Invalid credentials.'
-            })
+            }, status = 400)
 
     return render(request, 'users/login.html')
 
@@ -112,5 +113,5 @@ def cancelCourse(request):
 def courseEdition(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('users:login'))
-    if request.user.is_superuser:
-        return render(request, 'users/courseEdition.html')
+    # if request.user.is_superuser:
+    #     return render(request, 'users/courseEdition.html')

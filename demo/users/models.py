@@ -12,7 +12,7 @@ class Account(models.Model):
     )
 
     def __str__(self):
-        return self.user.username
+        return f'{self.user.username}'
 
 
 class Booking(models.Model):
@@ -22,8 +22,7 @@ class Booking(models.Model):
     def __str__(self):
         return f'Name:{self.username.first_name} Subject {self.subject.subjectCode}'
 
-    def is_quota_available(self):
-        return self.quota > 0
+    
 
 '''from django.contrib.auth.models import User
 

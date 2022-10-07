@@ -104,3 +104,26 @@ class UserViewTestCase(TestCase):
         response = self.client.post(reverse('users:cancelCourse'), {'subject' : subject.pk})
         self.assertEqual(response.status_code, 200)
 
+    def test_login_views_POST_valid(self):
+        response = self.client.post(reverse('users:login'), {'username' : 'AAA' , 'password' : '111'}, follow=True)
+        self.assertEqual(response.status_code, 200)
+
+    def test_login_views_POST_invalid(self):
+        response = self.client.post(reverse('users:login'), {'username' : 'AAA' , 'password' : '11'}, follow=True)
+        self.assertEqual(response.status_code, 400)
+
+    def test_logout_views(self):
+        response = self.client.get(reverse('users:logout'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_course_edition(self):
+        response = self.client.get(reverse('users:courseEdition'))
+        self.assertEqual(response.status_code, 302)
+
+    def test_login_as_admin(self):
+        admin = User.objects.create_user(username="admin", password="111", is_superuser=True)
+        login = self.client.login(username="admin", password="111")
+        response = self.client.get(reverse('users:index'))
+        self.assertEqual(response.status_code, 200)
+
+
