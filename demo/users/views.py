@@ -52,7 +52,7 @@ def enrollCourse(request):  # user_username):
 
     booking = Booking.objects.filter(
         username_id=request.user.id).values_list('subject_id', flat=True)
-    print(booking.query)
+    
     subjects = Subject.objects.exclude(pk__in=booking).all()
     return render(request, 'users/enrollCourse.html', {
         'subjects': subjects,
@@ -60,12 +60,11 @@ def enrollCourse(request):  # user_username):
     })
 
 
-def enrollComfirm(request):
+def enrollConfirm(request):
     if request.method == "POST":
         subjectID = request.POST['subject']
         subject1 = Subject.objects.filter(pk=subjectID).first()
         if subject1.quota != 0:
-            print("1111", request)
             b = Booking(subject=subject1, username=request.user)
             b.save()
             subject1.quota -= 1
@@ -94,7 +93,6 @@ def cancelCourse(request):
         subjectID = request.POST['subject']
         booking = Booking.objects.filter(
             username_id=request.user.id, subject_id=subjectID).all()
-        print(booking)
         if booking.count() > 0:
             booking.first().delete()
             subject1 = Subject.objects.filter(pk=subjectID).first()

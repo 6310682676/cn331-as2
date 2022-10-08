@@ -54,14 +54,14 @@
         {% for subject in subjects %}
         <tr>
             <!-- <td> </td>  -->
-            <td><a href="{% url 'subjects' subject.id %}">{{ subject.subjectCode }}</a></td>
+            <td><a href="{% url 'subjects:subjects' subject.id %}">{{ subject.subjectCode }}</a></td>
             <td>{{ subject.subjectName }}</td>
             <td>{{ subject.semester }}</td>
             <td>{{ subject.year }}</td>
             <td>{{ subject.quota }}</td>
             {%if subject.status and subject.quota %}
             <td>
-                <form action="{% url 'users:enrollComfirm' %}" method="post">
+                <form action="{% url 'users:enrollConfirm' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" value="{{ subject.id }}" name="subject">
                     <button type="submit" class="btn btn-success">enroll</button>

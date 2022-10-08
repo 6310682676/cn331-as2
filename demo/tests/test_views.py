@@ -51,7 +51,7 @@ class UserViewTestCase(TestCase):
         login = self.client.login(username="AAA", password="111")
         client = Client()
         subject = Subject.objects.first()
-        response = self.client.post(reverse('users:enrollComfirm'), {
+        response = self.client.post(reverse('users:enrollConfirm'), {
                                     'subject': subject.pk})
         self.assertEqual(response.status_code, 200)
 
@@ -75,7 +75,7 @@ class UserViewTestCase(TestCase):
 
         login = self.client.login(username="AAA", password="111")
 
-        response = self.client.post(reverse('users:enrollComfirm'), {
+        response = self.client.post(reverse('users:enrollConfirm'), {
             'subject': subject1.pk})
         count = Booking.objects.all().count()
 
@@ -91,11 +91,11 @@ class UserViewTestCase(TestCase):
 
 
     def test_subject_detail_views_status(self):
-        response = self.client.get(reverse('subjects', args=['1']))
+        response = self.client.get(reverse('subjects:subjects', args=['1']))
         self.assertEqual(response.status_code, 200)
 
     def test_subject_index_views_status(self):
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse('subjects:index'))
         self.assertEqual(response.status_code, 200)
 
     def test_cancle_booking_not_exist(self):

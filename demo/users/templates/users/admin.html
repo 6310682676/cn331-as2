@@ -50,7 +50,7 @@
 
     <tr>
         <!-- <td> </td>  -->
-        <td><a href="{% url 'subjects' subject.id %}">{{ subject.subjectCode }}</a></td>
+        <td><a href="{% url 'subjects:subjects' subject.id %}">{{ subject.subjectCode }}</a></td>
         <td>{{ subject.subjectName }}</td>
         <td>{{ subject.semester }}</td>
         <td>{{ subject.year }}</td>

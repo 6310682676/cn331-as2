@@ -48,7 +48,7 @@
         {% for subject in booking %}
         <tr>
             <!-- <td> </td>  -->
-            <td><a href="{% url 'subjects' subject.subject.id %}">{{ subject.subject.subjectCode }}</a></td>
+            <td><a href="{% url 'subjects:subjects' subject.subject.id %}">{{ subject.subject.subjectCode }}</a></td>
             <td>{{ subject.subject.subjectName }}</td>
             <td>{{ subject.subject.semester }}</td>
             <td>{{ subject.subject.year }}</td>

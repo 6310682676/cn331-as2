@@ -2,7 +2,7 @@ from django.test import TestCase
 from subjects.models import Subject
 
 
-class BookingTestCase(TestCase):
+class SubjectTestCase(TestCase):
 
     def setUp(self):
 
